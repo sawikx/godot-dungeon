@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://mpa.png" type="Texture" id=1]
+[ext_resource path="res://mpa.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 18.9414, 19.167 )
+
+[node name="meta" type="KinematicBody2D"]
+position = Vector2( 0.5, 0.25 )
+script = ExtResource( 2 )
+
+[node name="mpa" type="Sprite" parent="."]
+position = Vector2( 31.5078, 31.7734 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 203, 0, 64, 64 )
+
+[node name="kol" type="CollisionShape2D" parent="."]
+position = Vector2( 31.5, 31.75 )
+shape = SubResource( 1 )
+
+[node name="met" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="met"]
+position = Vector2( 31.5, 31.75 )
+shape = SubResource( 2 )
+[connection signal="body_entered" from="met" to="." method="_on_met_body_entered"]
